@@ -52,9 +52,6 @@ public class FirstPersonMovement : MonoBehaviour
         {
             _audioSource.Play();
         }
-        if (Input.GetKeyDown(runningKey) , false)
-        {
-            _audioSource.Stop();
-        }
+        
     }
 }
