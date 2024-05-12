@@ -5,13 +5,16 @@ public class FirstPersonMovement : MonoBehaviour
 {
     [SerializeField] FirstPersonMovement _controller;
     public float speed = 5;
-    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioSource _audioSourcewalk;
+    [SerializeField] AudioSource _audioSourcerun;
     [Header("Running")]
     public bool canRun = true;
     public float player;
     public bool IsRunning { get; private set; }
     public float runSpeed = 9;
     public KeyCode runningKey = KeyCode.LeftShift;
+    bool run;
+    bool walk;
     
     Rigidbody rigidbody;
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
@@ -48,10 +51,48 @@ public class FirstPersonMovement : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetKeyDown(runningKey))
-        {
-            _audioSource.Play();
-        }
         
+        
+
+
+
+       
+
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && !Input.GetKey(KeyCode.LeftShift))
+
+        {
+            if (walk == false)
+            {
+                walk = true;
+                _audioSourcewalk.Play();
+
+            }
+
+        }
+        else if (walk)
+        {
+            walk = false;
+            _audioSourcewalk.Stop();
+
+        }
+
+
+
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && Input.GetKey(KeyCode.LeftShift))
+        {
+            if (run == false)
+            {
+                run = true;
+                _audioSourcerun.Play();
+                
+                
+            }
+
+        }
+        else if (run != false)
+        {
+            run = false;
+            _audioSourcerun.Stop();
+        }
     }
 }
