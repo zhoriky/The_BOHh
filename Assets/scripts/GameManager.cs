@@ -5,14 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
  
-    void Start()
+    public void Quit()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Application.Quit();
     }
 }
