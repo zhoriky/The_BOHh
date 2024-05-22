@@ -4,17 +4,38 @@ using UnityEngine;
 
 public class key : MonoBehaviour
 {
-    
-    [SerializeField] AudioSource _audioSource;
-    
+    bool active = false;
+    public GameObject CAnvas;
+    public GameObject KATSCENA;
+    public GameObject Cam;
+    private void Update()
+    {
+        if (active == true && Input.GetKeyDown(KeyCode.E))
+        {
+            KATSCENA.SetActive(true);
+            gameObject.SetActive(false);
+            Cam.SetActive(true);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<FirstPersonMovement>() != null)
         {
-            
-            Destroy(gameObject);
-            _audioSource.Play();
-            
+
+            CAnvas.SetActive(true);
+
+            active = true;
+
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<FirstPersonMovement>() != null)
+        {
+
+            CAnvas.SetActive(false);
+
+            active = false;
 
         }
     }
